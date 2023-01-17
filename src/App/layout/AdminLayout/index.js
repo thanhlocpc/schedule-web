@@ -10,7 +10,7 @@ import Breadcrumb from './Breadcrumb';
 import Loader from "../Loader";
 import routes from "../../../routes";
 import Aux from "../../../hoc/_Aux";
-import * as actionTypes from "../../../store/actions";
+import * as actionTypes from "../../../redux/common/actions";
 
 import './app.scss';
 
@@ -59,8 +59,8 @@ class AdminLayout extends Component {
             <Aux>
                 <Fullscreen enabled={this.props.isFullScreen}>
                     <Navigation />
-                    <NavBar />
-                    <div className="pcoded-main-container" onClick={() => this.mobileOutClickHandler}>
+                    {/* <NavBar /> */}
+                    {/* <div className="pcoded-main-container" onClick={() => this.mobileOutClickHandler}>
                         <div className="pcoded-wrapper">
                             <div className="pcoded-content">
                                 <div className="pcoded-inner-content">
@@ -78,7 +78,7 @@ class AdminLayout extends Component {
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> */}
                 </Fullscreen>
             </Aux>
         );

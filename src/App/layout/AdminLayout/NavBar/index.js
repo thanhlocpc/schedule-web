@@ -4,8 +4,8 @@ import { connect } from 'react-redux';
 import NavLeft from "./NavLeft";
 import NavRight from "./NavRight";
 import Aux from "../../../../hoc/_Aux";
-import DEMO from "../../../../store/constant";
-import * as actionTypes from "../../../../store/actions";
+import DEMO from "../../../../redux/common/constant";
+import * as actionTypes from "../../../../redux/common/actions";
 import logo_full from '../../../../assets/images/logo-full.jpg'
 class NavBar extends Component {
     render() {
