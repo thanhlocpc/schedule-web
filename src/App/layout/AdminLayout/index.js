@@ -59,8 +59,8 @@ class AdminLayout extends Component {
             <Aux>
                 <Fullscreen enabled={this.props.isFullScreen}>
                     <Navigation />
-                    {/* <NavBar /> */}
-                    {/* <div className="pcoded-main-container" onClick={() => this.mobileOutClickHandler}>
+                    <NavBar />
+                    <div className="pcoded-main-container" onClick={() => this.mobileOutClickHandler}>
                         <div className="pcoded-wrapper">
                             <div className="pcoded-content">
                                 <div className="pcoded-inner-content">
@@ -78,7 +78,7 @@ class AdminLayout extends Component {
                                 </div>
                             </div>
                         </div>
-                    </div> */}
+                    </div>
                 </Fullscreen>
             </Aux>
         );
@@ -87,11 +87,11 @@ class AdminLayout extends Component {
 
 const mapStateToProps = state => {
     return {
-        defaultPath: state.defaultPath,
-        isFullScreen: state.isFullScreen,
-        collapseMenu: state.collapseMenu,
-        configBlock: state.configBlock,
-        layout: state.layout
+        defaultPath: state.common.defaultPath,
+        isFullScreen: state.common.isFullScreen,
+        collapseMenu: state.common.collapseMenu,
+        configBlock: state.common.configBlock,
+        layout: state.common.layout
     }
 };
 

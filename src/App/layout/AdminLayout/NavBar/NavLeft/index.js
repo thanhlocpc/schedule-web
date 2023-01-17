@@ -51,8 +51,8 @@ class NavLeft extends Component {
 
 const mapStateToProps = state => {
     return {
-        isFullScreen: state.isFullScreen,
-        rtlLayout: state.rtlLayout
+        isFullScreen: state.common.isFullScreen,
+        rtlLayout: state.common.rtlLayout
     }
 };
 
