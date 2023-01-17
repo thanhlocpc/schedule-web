@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import windowSize from 'react-window-size';
 
-import * as actionTypes from "../../../../../store/actions";
+import * as actionTypes from "../../../../../redux/common/actions";
 
 class OutsideClick extends Component {
     constructor(props) {
@@ -42,7 +42,7 @@ class OutsideClick extends Component {
 
 const mapStateToProps = state => {
     return {
-        collapseMenu: state.collapseMenu
+        collapseMenu: state.common.collapseMenu
     }
 };
 

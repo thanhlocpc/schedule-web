@@ -3,8 +3,8 @@ import {connect} from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
 import Aux from "../../../../../../hoc/_Aux";
-import DEMO from "../../../../../../store/constant";
-import * as actionTypes from "../../../../../../store/actions";
+import DEMO from "../../../../../../redux/common/constant";
+import * as actionTypes from "../../../../../../redux/common/actions";
 import NavIcon from './../NavIcon';
 import NavBadge from './../NavBadge';
 import NavItem from "../NavItem";
@@ -104,9 +104,9 @@ class NavCollapse extends Component {
 
 const mapStateToProps = state => {
     return {
-        layout: state.layout,
-        isOpen: state.isOpen,
-        isTrigger: state.isTrigger
+        layout: state.common.layout,
+        isOpen: state.common.isOpen,
+        isTrigger: state.common.isTrigger
     }
 };
 

@@ -5,8 +5,8 @@ import windowSize from 'react-window-size';
 
 import NavSearch from './NavSearch';
 import Aux from "../../../../../hoc/_Aux";
-import DEMO from "../../../../../store/constant";
-import * as actionTypes from "../../../../../store/actions";
+import DEMO from "../../../../../redux/common/constant";
+import * as actionTypes from "../../../../../redux/common/actions";
 
 class NavLeft extends Component {
 
@@ -51,8 +51,8 @@ class NavLeft extends Component {
 
 const mapStateToProps = state => {
     return {
-        isFullScreen: state.isFullScreen,
-        rtlLayout: state.rtlLayout
+        isFullScreen: state.common.isFullScreen,
+        rtlLayout: state.common.rtlLayout
     }
 };
 

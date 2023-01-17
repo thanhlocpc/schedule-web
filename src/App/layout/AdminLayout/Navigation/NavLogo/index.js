@@ -1,5 +1,5 @@
 import React from 'react';
-import DEMO  from './../../../../../store/constant';
+import DEMO  from './../../../../../redux/common/constant';
 import Aux from "../../../../../hoc/_Aux";
 import Logo_HCMUAF from '../../../../../assets/images/Logo_HCMUAF.webp';
 

@@ -10,7 +10,7 @@ import Breadcrumb from './Breadcrumb';
 import Loader from "../Loader";
 import routes from "../../../routes";
 import Aux from "../../../hoc/_Aux";
-import * as actionTypes from "../../../store/actions";
+import * as actionTypes from "../../../redux/common/actions";
 
 import './app.scss';
 
@@ -87,11 +87,11 @@ class AdminLayout extends Component {
 
 const mapStateToProps = state => {
     return {
-        defaultPath: state.defaultPath,
-        isFullScreen: state.isFullScreen,
-        collapseMenu: state.collapseMenu,
-        configBlock: state.configBlock,
-        layout: state.layout
+        defaultPath: state.common.defaultPath,
+        isFullScreen: state.common.isFullScreen,
+        collapseMenu: state.common.collapseMenu,
+        configBlock: state.common.configBlock,
+        layout: state.common.layout
     }
 };
 

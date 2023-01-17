@@ -6,8 +6,8 @@ import windowSize from 'react-window-size';
 
 import Aux from "../../../../../hoc/_Aux";
 import NavGroup from './NavGroup';
-import DEMO from "../../../../../store/constant";
-import * as actionTypes from "../../../../../store/actions";
+import DEMO from "../../../../../redux/common/constant";
+import * as actionTypes from "../../../../../redux/common/actions";
 
 class NavContent extends Component {
     state = {
@@ -95,8 +95,8 @@ class NavContent extends Component {
 
 const mapStateToProps = state => {
     return {
-        layout: state.layout,
-        collapseMenu: state.collapseMenu,
+        layout: state.common.layout,
+        collapseMenu: state.common.collapseMenu,
     }
 };
 

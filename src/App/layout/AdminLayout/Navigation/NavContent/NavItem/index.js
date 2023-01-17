@@ -7,7 +7,7 @@ import windowSize from 'react-window-size';
 import Aux from "../../../../../../hoc/_Aux";
 import NavIcon from "./../NavIcon";
 import NavBadge from "./../NavBadge";
-import * as actionTypes from "../../../../../../store/actions";
+import * as actionTypes from "../../../../../../redux/common/actions";
 
 class NavItem extends Component {
 
@@ -67,8 +67,8 @@ class NavItem extends Component {
 
 const mapStateToProps = state => {
     return {
-        layout: state.layout,
-        collapseMenu: state.collapseMenu
+        layout: state.common.layout,
+        collapseMenu: state.common.collapseMenu
     }
 };
 

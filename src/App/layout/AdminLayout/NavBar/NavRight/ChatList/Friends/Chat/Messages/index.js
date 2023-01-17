@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Aux from "../../../../../../../../../hoc/_Aux";
-import DEMO from "../../../../../../../../../store/constant";
+import DEMO from "../../../../../../../../../redux/common/constant";
 const images = require.context('../../../../../../../../../assets/images/user', true);
 
 const messages = (props) => {
