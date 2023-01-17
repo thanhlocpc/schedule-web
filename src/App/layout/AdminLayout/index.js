@@ -13,6 +13,7 @@ import Aux from "../../../hoc/_Aux";
 import * as actionTypes from "../../../redux/common/actions";
 
 import './app.scss';
+import { withRouter } from 'react-router-dom';
 
 class AdminLayout extends Component {
 
@@ -102,4 +103,4 @@ const mapDispatchToProps = dispatch => {
     }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps) (windowSize(AdminLayout));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps) (windowSize(AdminLayout)));
