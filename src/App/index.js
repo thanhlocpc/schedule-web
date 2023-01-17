@@ -8,6 +8,7 @@ import Loader from './layout/Loader'
 import Aux from "../hoc/_Aux";
 import ScrollToTop from './layout/ScrollToTop';
 import routes from "../route";
+import { connect } from 'react-redux';
 
 const AdminLayout = Loadable({
     loader: () => import('./layout/AdminLayout'),
@@ -16,17 +17,19 @@ const AdminLayout = Loadable({
 
 class App extends Component {
     render() {
+        const { auth } = this.props
+
         const menu = routes.map((route, index) => {
-          return (route.component) ? (
-              <Route
-                  key={index}
-                  path={route.path}
-                  exact={route.exact}
-                  name={route.name}
-                  render={props => (
-                      <route.component {...props} />
-                  )} />
-          ) : (null);
+            return (route.component) ? (
+                <Route
+                    key={index}
+                    path={route.path}
+                    exact={route.exact}
+                    name={route.name}
+                    render={props => (
+                        <route.component {...props} />
+                    )} />
+            ) : (null);
         });
 
         return (
@@ -43,5 +46,9 @@ class App extends Component {
         );
     }
 }
-
-export default App;
+const mapStateToProps = (state) => {
+    return{
+    auth: state.authReducer
+    }
+}
+export default connect(mapStateToProps)(App);
