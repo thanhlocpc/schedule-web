@@ -5,8 +5,10 @@
     align-items: center;
 
     .b-bg {
-        background: $theme-color;
-        border-radius: 10px;
+        background-image: url("../../../images/Logo_HCMUAF.png");
+        background-repeat: no-repeat; 
+        background-size: 35px;
+        border-radius: 50%;
         width: 35px;
         height: 35px;
         display: inline-flex;

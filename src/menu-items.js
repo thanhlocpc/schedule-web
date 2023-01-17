@@ -21,7 +21,7 @@ export default {
                     type: 'item',
                     url: '/schedule-page',
                     classes: 'nav-item',
-                    icon: 'feather icon-sidebar'
+                    icon: 'feather icon-check-square'
                 },
                 {
                     id: 'docs',
@@ -29,7 +29,7 @@ export default {
                     type: 'item',
                     url: '/docs',
                     classes: 'nav-item',
-                    icon: 'feather icon-help-circle'
+                    icon: 'feather icon-calendar'
                 },
             ]
         }

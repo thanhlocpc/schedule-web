@@ -2,7 +2,6 @@
   "name": "schedule-website",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://lite.codedthemes.com/datta-able/react/default/",
   "dependencies": {
     "@syncfusion/ej2-react-schedule": "^20.4.43",
     "bootstrap": "^4.3.1",

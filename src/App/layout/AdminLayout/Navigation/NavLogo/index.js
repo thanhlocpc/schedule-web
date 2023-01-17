@@ -1,7 +1,7 @@
 import React from 'react';
 import DEMO  from './../../../../../store/constant';
 import Aux from "../../../../../hoc/_Aux";
-import avatar1 from '../../../../../assets/images/user/avatar-1.jpg';
+import Logo_HCMUAF from '../../../../../assets/images/Logo_HCMUAF.webp';
 
 
 
@@ -18,7 +18,7 @@ const navLogo = (props) => {
                     <div className="b-bg">
                         {/* <i className="feather icon-trending-up" /> */}
                         <a href={DEMO.BLANK_LINK}>
-                            <img className="rounded-circle" style={{width: '40px'}} src={avatar1} alt="activity-user"/>
+                            <img className="rounded-circle" style={{width: '40px'}} src={Logo_HCMUAF} alt="activity-user"/>
                         </a>
 
                     </div>
