@@ -15,13 +15,13 @@ class SignUp1 extends React.Component {
 
     componentDidMount() {
         if(this.props.auth.user){
-            window.location.href = "/home"
+            window.location.href = "/"
         }
     }
     componentDidUpdate() {
-        // if(this.props.auth.user){
-        //     window.history.go("/")
-        // }
+        if(this.props.auth.user){
+            window.location.href = "/"
+        }
     }
     render() {
 
