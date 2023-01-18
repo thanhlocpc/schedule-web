@@ -12,12 +12,12 @@ import {
 } from './services';
 
 // import history from '~/utils/history';
-import RootNavigate from '~/utils/navigate';
-import { updateUser } from '~/services/workspaces.sevices';
+// import RootNavigate from '~/utils/navigate';
 
 function* loginSaga(action) {
     const { email, password } = action.payload;
     console.log('login: ', email, '|', password);
+    yield put({ type: LOGIN_FAIL});
     try {
         yield put({ type: LOADING });
         const response = yield call(loginService, email, password);
@@ -29,8 +29,9 @@ function* loginSaga(action) {
             // lấy thông tin user
             const user = yield call(getUserService);
             yield put({ type: LOGIN_SUCCESS, payload: { user: user.data } });
+            console.log(user);
 
-            RootNavigate.getNavigate()('/');
+            // RootNavigate.getNavigate()('/');
         } else {
             yield put({ type: LOGIN_FAIL, payload: { error: response.message } });
         }

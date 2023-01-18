@@ -19,6 +19,7 @@ const AdminLayout = Loadable({
 
 class App extends Component {
     render() {
+        console.log(this.props.auth);
         const menu = routes.map((route, index) => {
             return (route.component) ? (
                 <Route
@@ -39,10 +40,12 @@ class App extends Component {
                     <Suspense fallback={<Loader />}>
                         <Switch>
                             {menu}
-                            {/* <Route path="/" component={AdminLayout} /> */}
-                            <Route path="/" render={() => (
-                                auth.user ? <AdminLayout /> : <Redirect from="/" to="/signin" />
-                            )} />
+                            <Route path="/" component={AdminLayout} />
+                            {/* <Route path="/" render={() => (
+                                auth.user ? <AdminLayout /> : <Redirect to="/signin" />
+                            )} /> */}
+
+                            {/* {!auth.user && <Redirect to="/signin" />} */}
 
                         </Switch>
                     </Suspense>

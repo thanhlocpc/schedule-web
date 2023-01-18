@@ -21,7 +21,8 @@ function authReducer(state = initialState, action) {
         case LOADING:
             return { ...state, loading: true, error: null, message: null };
         case LOGIN_FAIL:
-            return { ...state, loading: false, user: null, error: action.payload.error, message: null };
+            console.log(state);
+            return { ...state };
         case LOGOUT:
             localStorage.removeItem('token');
             return { ...state, loading: false, user: null };

@@ -1,17 +1,16 @@
-import instance from '~/interceptors/axios';
-import api from '~/utils/axios';
+import instance from '../../interceptors/axios';
 
 export const loginService = async (email, password) =>
     await instance
-        .post('/v1/auths/login', { email, password })
+        .post('/auths/login', { email, password })
         .then((res) => {
             return res.data;
         })
         .catch((e) => e.response?.data);
 
 export const getUserService = async () =>
-    await api
-        .get('/v1/auths/user')
+    await instance
+        .get('/auths/user')
         .then((res) => {
             return res.data;
         })

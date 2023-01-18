@@ -1,5 +1,5 @@
 import axios from 'axios';
-const BASE_URL = 'https://schedule-service.azurewebsites.net/schedule-service/';
+const BASE_URL = 'http://localhost:8585/schedule-service/v1/';
 const instance = axios.create({
     baseURL: BASE_URL,
     headers: { 'Content-Type': 'application/json' },
