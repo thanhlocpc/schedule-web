@@ -47,6 +47,9 @@
         &.subscribe {
             width: 750px;
         }
+        button{
+            min-width: 100px !important
+        }
     }
     @media only screen and (max-width: 768px) {
         max-width: 360px;

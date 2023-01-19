@@ -1,11 +1,12 @@
 import React from 'react';
-import { NavLink,  } from 'react-router-dom';
+import { NavLink, } from 'react-router-dom';
 
 import './../../../assets/scss/style.scss';
 import Aux from "../../../hoc/_Aux";
 import Breadcrumb from "../../../App/layout/AdminLayout/Breadcrumb";
 import { login } from '../../../redux/auth/actions';
 import { connect } from 'react-redux';
+import PacmanLoader from "react-spinners/PacmanLoader";
 
 class SignUp1 extends React.Component {
     state = {
@@ -14,12 +15,12 @@ class SignUp1 extends React.Component {
     }
 
     componentDidMount() {
-        if(this.props.auth.user){
+        if (this.props.auth.user) {
             window.location.href = "/"
         }
     }
     componentDidUpdate() {
-        if(this.props.auth.user){
+        if (this.props.auth.user) {
             window.location.href = "/"
         }
     }
@@ -28,6 +29,14 @@ class SignUp1 extends React.Component {
         const login = () => {
             this.props.login(this.state.username, this.state.password)
         }
+
+        const override = {
+            display: "block",
+            margin: "0 auto",
+            borderColor: "white",
+            left: -12
+        };
+
         return (
             <Aux>
                 {/* <Breadcrumb /> */}
@@ -59,12 +68,27 @@ class SignUp1 extends React.Component {
                                         <label htmlFor="checkbox-fill-a1" className="cr"> Save credentials</label>
                                     </div>
                                 </div>
-                                <button className="btn btn-primary shadow-2 mb-4" onClick={login}>Login</button>
+                                <button className="btn btn-primary shadow-2 mb-4" onClick={login}>
+                                    {this.props.auth.loading ?
+                                        <PacmanLoader
+                                            cssOverride={override}
+                                            size={11}
+                                            color='white'
+                                            loading={this.props.auth.loading}
+                                            speedMultiplier={1.5}
+                                            aria-label="Loading Spinner"
+                                            data-testid="loader"
+                                        /> : "Login"}
+                                </button>
+
                                 <p className="mb-2 text-muted">Quên mật khẩu? <NavLink to="/auth/reset-password-1">Reset</NavLink></p>
                                 {/* <p className="mb-0 text-muted">Don’t have an account? <NavLink to="/auth/signup-1">Signup</NavLink></p> */}
                             </div>
                         </div>
                     </div>
+
+
+
                 </div>
             </Aux>
         );
