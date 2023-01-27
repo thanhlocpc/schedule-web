@@ -8,7 +8,7 @@ import * as serviceWorker from './serviceWorker';
 import reducer from './redux/common/reducer';
 import config from './config';
 import { persistStore } from 'redux-persist';
-
+import 'react-notifications/lib/notifications.css';
 // const store = createStore(reducer);
 
 import store from "./store/store"

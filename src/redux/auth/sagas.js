@@ -11,6 +11,9 @@ import {
     getUserService,
 } from './services';
 
+import { NotificationManager} from 'react-notifications';
+
+
 // import history from '~/utils/history';
 // import RootNavigate from '~/utils/navigate';
 
@@ -24,7 +27,8 @@ function* loginSaga(action) {
         console.log(response);
         if (response.status == 1) {
             // lưu token
-            localStorage.setItem('token', response.data);
+            localStorage.setItem('token', response.data.accessToken);
+            localStorage.setItem('refreshToken', response.data.refreshToken);
 
             // lấy thông tin user
             const user = yield call(getUserService);
@@ -33,6 +37,7 @@ function* loginSaga(action) {
 
             // RootNavigate.getNavigate()('/');
         } else {
+            NotificationManager.error(response.message);
             yield put({ type: LOGIN_FAIL, payload: { error: response.message } });
         }
     } catch (error) {

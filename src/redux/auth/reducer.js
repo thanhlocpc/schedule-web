@@ -22,7 +22,7 @@ function authReducer(state = initialState, action) {
             return { ...state, loading: true, error: null, message: null };
         case LOGIN_FAIL:
             console.log(state);
-            return { ...state };
+            return { ...state, loading:false };
         case LOGOUT:
             localStorage.removeItem('token');
             return { ...state, loading: false, user: null };

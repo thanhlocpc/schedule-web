@@ -11,6 +11,7 @@ import routes from "../route";
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
+import {NotificationContainer, NotificationManager} from 'react-notifications';
 
 const AdminLayout = Loadable({
     loader: () => import('./layout/AdminLayout'),
@@ -50,6 +51,7 @@ class App extends Component {
                         </Switch>
                     </Suspense>
                 </ScrollToTop>
+                <NotificationContainer/>
             </Aux>
         );
     }
