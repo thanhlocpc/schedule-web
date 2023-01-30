@@ -23,14 +23,23 @@ export default {
                     classes: 'nav-item',
                     icon: 'feather icon-check-square'
                 },
+
                 {
-                    id: 'docs',
-                    title: 'Xem thời khóa biểu',
+                    id: 'logout',
+                    title: 'Đăng xuất',
                     type: 'item',
-                    url: '/docs',
+                    url: '/logout',
                     classes: 'nav-item',
-                    icon: 'feather icon-calendar'
+                    icon: 'feather icon-log-out'
                 },
+                // {
+                //     id: 'docs',
+                //     title: 'Xem thời khóa biểu',
+                //     type: 'item',
+                //     url: '/docs',
+                //     classes: 'nav-item',
+                //     icon: 'feather icon-calendar'
+                // },
             ]
         }
     ]

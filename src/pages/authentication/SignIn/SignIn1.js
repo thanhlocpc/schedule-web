@@ -24,6 +24,9 @@ class SignUp1 extends React.Component {
             window.location.href = "/"
         }
     }
+    componentWillUnmount(){
+        
+    }
     render() {
 
         const login = () => {

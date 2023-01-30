@@ -17,9 +17,9 @@ const navLogo = (props) => {
                  <a href={DEMO.BLANK_LINK} className="b-brand">
                     <div className="b-bg">
                         {/* <i className="feather icon-trending-up" /> */}
-                        <a href={DEMO.BLANK_LINK}>
+                        {/* <a href={DEMO.BLANK_LINK}> */}
                             <img className="rounded-circle" style={{width: '40px'}} src={Logo_HCMUAF} alt="activity-user"/>
-                        </a>
+                        {/* </a> */}
 
                     </div>
                     <span className="b-title">ĐH Nông Lâm</span>
