@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Row, Col, Card, Table } from 'react-bootstrap';
+import { Row, Col, Card, Table, Button } from 'react-bootstrap';
 
 
 import Aux from "../hoc/_Aux";
@@ -28,6 +28,22 @@ class SchedulePage extends Component {
         })
     }
 
+    onDownload = async () => {
+
+        await api.get("/subject-schedules/export-schedule", { params: { year: 2021, semester: 1 }, responseType: 'blob' })
+            .then(res => {
+                const link = document.createElement('a')
+                link.href = window.URL.createObjectURL(res.data)
+                link.download = 'lich-thi.xlsx'
+                link.click()
+
+                document.body.removeChild(link);
+            })
+            .catch(e => e)
+       
+       
+    }
+
     render() {
         registerLicense('Mgo+DSMBaFt/QHRqVVhkX1pGaV5GQmFJfFBmTGlcfVRwfUU3HVdTRHRcQlxiTH9TdEdiWnZZdHM=;Mgo+DSMBPh8sVXJ0S0J+XE9AdVRAQmJNYVF2R2BJdlR1dl9GaUwgOX1dQl9gSX9Sc0RjW31fc31dT2c=;ORg4AjUWIQA/Gnt2VVhkQlFaclxJX3xIekx0RWFab1d6cVdMYFVBNQtUQF1hSn5Sd0BiWX1ccXBVRmVb;OTQzNjY2QDMyMzAyZTM0MmUzMGxjNUJWR3huYnZpcUt1eE5FNS9nWWlmd3hETGdJUXN1NWVna1ZRL3dHbEE9;OTQzNjY3QDMyMzAyZTM0MmUzMGdqaGpyN1Yxc0VpdFd6THhqVXdPdnZjVUJJT21iaG5zTzF6NXpQemNYMXc9;NRAiBiAaIQQuGjN/V0Z+WE9EaFtBVmFWf1dpR2NbfE55flBEalxYVAciSV9jS31Td0RmWH9ccnVRRmdcVg==;OTQzNjY5QDMyMzAyZTM0MmUzMG1Qd2FRTGxOVVpXa0g1bTR1U08yTHN6NUNJaU5ncUFiMm5SSkVFbk1LRkU9;OTQzNjcwQDMyMzAyZTM0MmUzMEcvaW1jeFJGeWRtZERvUXhhTDZLMWh3bjd3bE85QzZ6UUFFb0o5RmdsT1E9;Mgo+DSMBMAY9C3t2VVhkQlFaclxJX3xIekx0RWFab1d6cVdMYFVBNQtUQF1hSn5Sd0BiWX1ccXBURWZb;OTQzNjcyQDMyMzAyZTM0MmUzMFZGY0k0Tyt2aVdwczhlZmV3T2t6VFdyZWdLL3hqb2M1VDQrRmV1S1EyVDQ9;OTQzNjczQDMyMzAyZTM0MmUzMFZNOUVaRmc0VjZ3WTcvSDBSeS9sUDdTQm9aRjdoVlNlWXNsN3hnVWpjbkk9;OTQzNjc0QDMyMzAyZTM0MmUzMG1Qd2FRTGxOVVpXa0g1bTR1U08yTHN6NUNJaU5ncUFiMm5SSkVFbk1LRkU9');
 
@@ -46,8 +62,14 @@ class SchedulePage extends Component {
                     <Col>
                         <Card>
                             <Card.Header>
-                                <Card.Title as="h5">Lịch thi</Card.Title>
-                                {/* <span className="d-block m-t-5">use props <code>hover</code> with <code>Table</code> component</span> */}
+                                <Row>
+                                    <Card.Title as="h5">Lịch thi</Card.Title>
+                                </Row>
+
+                                <Row>
+                                    <Button size='sm' style={{ marginTop: 5 }} onClick={this.onDownload}>Tải xuống lịch thi</Button>
+                                </Row>
+
                             </Card.Header>
                             <Card.Body>
                                 <Table responsive hover>
@@ -68,7 +90,7 @@ class SchedulePage extends Component {
                                             return (
                                                 <tr key={index}>
                                                     <th scope="row">{index++}</th>
-                                                    <td>{e.courseName}</td>
+                                                    <td>{e.subjectId}</td>
                                                     <td>{e.subjectName}</td>
                                                     <td>{`${e.dateExam[2]}-${e.dateExam[1]}-${e.dateExam[0]}`}</td>
                                                     <td>{e.classroomName}</td>
