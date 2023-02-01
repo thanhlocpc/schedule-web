@@ -40,8 +40,8 @@ class SchedulePage extends Component {
                 document.body.removeChild(link);
             })
             .catch(e => e)
-       
-       
+
+
     }
 
     render() {
@@ -65,11 +65,6 @@ class SchedulePage extends Component {
                                 <Row>
                                     <Card.Title as="h5">Lịch thi</Card.Title>
                                 </Row>
-
-                                <Row>
-                                    <Button size='sm' style={{ marginTop: 5 }} onClick={this.onDownload}>Tải xuống lịch thi</Button>
-                                </Row>
-
                             </Card.Header>
                             <Card.Body>
                                 <Table responsive hover>
@@ -102,6 +97,12 @@ class SchedulePage extends Component {
                                         })}
                                     </tbody>
                                 </Table>
+                                {this.state.scheduleData &&
+                                    <Row style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                                        <Button size='sm' style={{ marginTop: 5 }} onClick={this.onDownload}>  <i className="feather icon-download"/>Tải xuống lịch thi</Button>
+                                    </Row>}
+
+
                             </Card.Body>
                         </Card>
                     </Col>
