@@ -97,7 +97,7 @@ class SchedulePage extends Component {
                                         })}
                                     </tbody>
                                 </Table>
-                                {this.state.scheduleData &&
+                                {this.state.scheduleData && this.state.scheduleData.length > 0 &&
                                     <Row style={{ display: 'flex', justifyContent: 'flex-end' }}>
                                         <Button size='sm' style={{ marginTop: 5 }} onClick={this.onDownload}>  <i className="feather icon-download"/>Tải xuống lịch thi</Button>
                                     </Row>}
