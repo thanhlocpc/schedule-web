@@ -19,9 +19,18 @@ export default {
                     id: 'sample-page',
                     title: 'Xem lịch thi',
                     type: 'item',
-                    url: '/schedule-page',
+                    url: '/schedule',
                     classes: 'nav-item',
                     icon: 'feather icon-check-square'
+                },
+
+                {
+                    id: 'time-table',
+                    title: 'Xem thời khóa biểu',
+                    type: 'item',
+                    url: '/time-table',
+                    classes: 'nav-item',
+                    icon: 'feather icon-calendar'
                 },
 
                 {
@@ -32,14 +41,7 @@ export default {
                     classes: 'nav-item',
                     icon: 'feather icon-log-out'
                 },
-                // {
-                //     id: 'docs',
-                //     title: 'Xem thời khóa biểu',
-                //     type: 'item',
-                //     url: '/docs',
-                //     classes: 'nav-item',
-                //     icon: 'feather icon-calendar'
-                // },
+
             ]
         }
     ]
