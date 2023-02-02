@@ -81,7 +81,7 @@ class TimeTablePage extends Component {
                                                                     <td>{e.course?.classEntity.name}</td>
                                                                     <td>{time.dayOfWeek}</td>
                                                                     <td>{time.timeStart}</td>
-                                                                    <td>{e.course?.subject.credit}</td>
+                                                                    <td>{e.course?.subject.lessonTime}</td>
                                                                     <td>{time.classroom.name}</td>
                                                                     <td>Chua them</td>
                                                             </tr>
