@@ -24,11 +24,13 @@ function* loginSaga(action) {
     try {
         yield put({ type: LOADING });
         const response = yield call(loginService, email, password);
-        console.log(response);
+        console.log(response.data);
         if (response.status == 1) {
             // lưu token
             localStorage.setItem('token', response.data.accessToken);
             localStorage.setItem('refreshToken', response.data.refreshToken);
+            localStorage.setItem('tokenExpDate', response.data.tokenExpDate);
+
 
             // lấy thông tin user
             const user = yield call(getUserService);

@@ -12,6 +12,8 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
 import {NotificationContainer, NotificationManager} from 'react-notifications';
+import AuthVerify from '../auth-verify';
+import { logout } from '../redux/auth/actions';
 
 const AdminLayout = Loadable({
     loader: () => import('./layout/AdminLayout'),
@@ -47,10 +49,11 @@ class App extends Component {
                             )} /> */}
 
                             {/* {!auth.user && <Redirect to="/signin" />} */}
-
                         </Switch>
                     </Suspense>
+                    <AuthVerify logout={this.props.logout}/>
                 </ScrollToTop>
+
                 <NotificationContainer/>
             </Aux>
         );
@@ -63,5 +66,11 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default withRouter(connect(mapStateToProps)(App));
+const mapDispatchToProps = (dispatch) => {
+    return {
+        logout: () => dispatch(logout()),
+    }
+}
+
+export default withRouter(connect(mapStateToProps,mapDispatchToProps)(App));
 
