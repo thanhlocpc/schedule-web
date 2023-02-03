@@ -35,9 +35,9 @@ class NavLeft extends Component {
                             </Dropdown.Toggle>
                             <ul>
                                 <Dropdown.Menu>
-                                    <li><a className="dropdown-item" href={DEMO.BLANK_LINK}>Xem lịch thi</a></li>
-                                    <li><a className="dropdown-item" href={DEMO.BLANK_LINK}>Xem thời khóa biểu</a></li>
-                                    <li><a className="dropdown-item" href={DEMO.BLANK_LINK}>Xem điểm</a></li>
+                                    <li><a className="dropdown-item" href={"/schedule"}>Xem lịch thi</a></li>
+                                    <li><a className="dropdown-item" href={"time-table"}>Xem thời khóa biểu</a></li>
+                                    <li><a className="dropdown-item" href={"/score-table"}>Xem điểm</a></li>
                                 </Dropdown.Menu>
                             </ul>
                         </Dropdown>
