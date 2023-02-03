@@ -34,6 +34,15 @@ export default {
                 },
 
                 {
+                    id: 'score-table',
+                    title: 'Xem điểm',
+                    type: 'item',
+                    url: '/score-table',
+                    classes: 'nav-item',
+                    icon: 'feather icon-calendar'
+                },
+
+                {
                     id: 'logout',
                     title: 'Đăng xuất',
                     type: 'item',

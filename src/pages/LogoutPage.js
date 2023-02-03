@@ -1,9 +1,9 @@
 import React from 'react';
 import { Row, Col, Card, Table, Tabs, Tab } from 'react-bootstrap';
 import { connect } from 'react-redux';
-import { logout } from '../../redux/auth/actions';
+import { logout } from '../redux/auth/actions';
 
-import Aux from "../../hoc/_Aux";
+import Aux from "../hoc/_Aux";
 
 
 class LogoutPage extends React.Component {
