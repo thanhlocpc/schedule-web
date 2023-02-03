@@ -39,7 +39,7 @@ export default {
                     type: 'item',
                     url: '/score-table',
                     classes: 'nav-item',
-                    icon: 'feather icon-calendar'
+                    icon: 'feather icon-feather'
                 },
 
                 {
