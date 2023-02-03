@@ -3,6 +3,7 @@ import { withRouter } from "react-router-dom";
 
 class AuthVerify extends Component {
     constructor(props) {
+        super()
         props.history.listen(() => {
             const tokenExpDate = localStorage.getItem("tokenExpDate");
             if (tokenExpDate) {
