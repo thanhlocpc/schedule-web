@@ -1,8 +1,8 @@
 import React from 'react';
 
-const SignUp1 = React.lazy(() => import('./pages/authentication/SignUp/SignUp1'));
-const Signin = React.lazy(() => import('./pages/authentication/SignIn/SignIn1'));
-const Logout = React.lazy(() => import('./pages/authentication/LogoutPage'));
+const SignUp1 = React.lazy(() => import('./pages/SignUpPage'));
+const Signin = React.lazy(() => import('./pages/SignInPage'));
+const Logout = React.lazy(() => import('./pages/LogoutPage'));
 
 
 const route = [

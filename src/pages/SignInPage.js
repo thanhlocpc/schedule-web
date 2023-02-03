@@ -1,10 +1,10 @@
 import React from 'react';
 import { NavLink, } from 'react-router-dom';
 
-import './../../../assets/scss/style.scss';
-import Aux from "../../../hoc/_Aux";
-import Breadcrumb from "../../../App/layout/AdminLayout/Breadcrumb";
-import { login } from '../../../redux/auth/actions';
+import '../assets/scss/style.scss';
+import Aux from "../hoc/_Aux";
+import Breadcrumb from "../App/layout/AdminLayout/Breadcrumb";
+import { login } from '../redux/auth/actions';
 import { connect } from 'react-redux';
 import PacmanLoader from "react-spinners/PacmanLoader";
 
