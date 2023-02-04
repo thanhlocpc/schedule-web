@@ -11,7 +11,8 @@ import api from "../interceptors/axios"
 
 class SchedulePage extends Component {
     state = {
-        scheduleData: []
+        scheduleData: [],
+        loadingDownload: false
     }
 
     componentDidMount() {
@@ -29,18 +30,27 @@ class SchedulePage extends Component {
     }
 
     onDownload = async () => {
-
-        await api.get("/subject-schedules/export-schedule", { params: { year: 2021, semester: 1 }, responseType: 'blob' })
-            .then(res => {
-                const link = document.createElement('a')
-                link.href = window.URL.createObjectURL(res.data)
-                link.download = 'lich-thi.xlsx'
-                link.click()
-
-                document.body.removeChild(link);
+        try {
+            this.setState({
+                loadingDownload: true
             })
-            .catch(e => e)
+            await api.get("/subject-schedules/export-schedule", { params: { year: 2021, semester: 1 }, responseType: 'blob' })
+                .then(res => {
+                    const link = document.createElement('a')
+                    link.href = window.URL.createObjectURL(res.data)
+                    link.download = 'lich-thi.xlsx'
+                    link.click()
 
+                    document.body.removeChild(link);
+                })
+            this.setState({
+                loadingDownload: false
+            })
+        } catch {
+            this.setState({
+                loadingDownload: false
+            })
+        }
 
     }
 
@@ -99,7 +109,7 @@ class SchedulePage extends Component {
                                 </Table>
                                 {this.state.scheduleData && this.state.scheduleData.length > 0 &&
                                     <Row style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                                        <Button size='sm' style={{ marginTop: 5 }} onClick={this.onDownload}>  <i className="feather icon-download"/>Tải xuống lịch thi</Button>
+                                        <Button size='sm' style={{ marginTop: 5 }} onClick={this.onDownload}> {this.state.loadingDownload ? <i className="feather icon-loader" /> : <i className="feather icon-download" />}Tải xuống lịch thi</Button>
                                     </Row>}
 
 

@@ -6,137 +6,9 @@ import api from "../interceptors/axios"
 
 class ScoreTablePage extends Component {
     state = {
-        markData: {
-        //     "semesterTranscripts": [
-        //         {
-        //             "semester": {
-        //                 "id": 1,
-        //                 "semesterName": 1,
-        //                 "academyYear": 2021
-        //             },
-        //             "subjects": [
-        //                 {
-        //                     "subject": {
-        //                         "id": "214464",
-        //                         "name": "AnToanBaoMat",
-        //                         "examType": "ESSAY",
-        //                         "examTime": 2,
-        //                         "lessonTime": 3,
-        //                         "credit": 3
-        //                     },
-        //                     "numberScoreFour": 4,
-        //                     "numberScoreTen": 8.5,
-        //                     "literalScore": "A",
-        //                     "pass": true
-        //                 },
-        //                 {
-        //                     "subject": {
-        //                         "id": "214462",
-        //                         "name": "Ltw",
-        //                         "examType": "ORAL",
-        //                         "examTime": 6,
-        //                         "lessonTime": 3,
-        //                         "credit": 4
-        //                     },
-        //                     "numberScoreFour": 3.5,
-        //                     "numberScoreTen": 8,
-        //                     "literalScore": "B+",
-        //                     "pass": true
-        //                 }
-        //             ],
-        //             "totalCredit": 7,
-        //             "avgScoreTen": 8.21,
-        //             "avgScoreFour": 3.28
-        //         },
-
-        //         {
-        //             "semester": {
-        //                 "id": 1,
-        //                 "semesterName": 1,
-        //                 "academyYear": 2021
-        //             },
-        //             "subjects": [
-        //                 {
-        //                     "subject": {
-        //                         "id": "214464",
-        //                         "name": "AnToanBaoMat",
-        //                         "examType": "ESSAY",
-        //                         "examTime": 2,
-        //                         "lessonTime": 3,
-        //                         "credit": 3
-        //                     },
-        //                     "numberScoreFour": 4,
-        //                     "numberScoreTen": 8.5,
-        //                     "literalScore": "A",
-        //                     "pass": true
-        //                 },
-        //                 {
-        //                     "subject": {
-        //                         "id": "214462",
-        //                         "name": "Ltw",
-        //                         "examType": "ORAL",
-        //                         "examTime": 6,
-        //                         "lessonTime": 3,
-        //                         "credit": 4
-        //                     },
-        //                     "numberScoreFour": 3.5,
-        //                     "numberScoreTen": 8,
-        //                     "literalScore": "B+",
-        //                     "pass": true
-        //                 }
-        //             ],
-        //             "totalCredit": 7,
-        //             "avgScoreTen": 8.21,
-        //             "avgScoreFour": 3.28
-        //         },
-
-        //         {
-        //             "semester": {
-        //                 "id": 1,
-        //                 "semesterName": 1,
-        //                 "academyYear": 2021
-        //             },
-        //             "subjects": [
-        //                 {
-        //                     "subject": {
-        //                         "id": "214464",
-        //                         "name": "AnToanBaoMat",
-        //                         "examType": "ESSAY",
-        //                         "examTime": 2,
-        //                         "lessonTime": 3,
-        //                         "credit": 3
-        //                     },
-        //                     "numberScoreFour": 4,
-        //                     "numberScoreTen": 8.5,
-        //                     "literalScore": "A",
-        //                     "pass": true
-        //                 },
-        //                 {
-        //                     "subject": {
-        //                         "id": "214462",
-        //                         "name": "Ltw",
-        //                         "examType": "ORAL",
-        //                         "examTime": 6,
-        //                         "lessonTime": 3,
-        //                         "credit": 4
-        //                     },
-        //                     "numberScoreFour": 3.5,
-        //                     "numberScoreTen": 8,
-        //                     "literalScore": "B+",
-        //                     "pass": true
-        //                 }
-        //             ],
-        //             "totalCredit": 7,
-        //             "avgScoreTen": 8.21,
-        //             "avgScoreFour": 3.28
-        //         }
-        //     ],
-        //     "totalCredit": 7,
-        //     "avgScoreTen": 8.21,
-        //     "avgScoreFour": 3.28
-        }
+        markData: {},
+        loadingDownload: false
     }
-
     componentDidMount() {
         this.fetchData()
     }
@@ -152,17 +24,28 @@ class ScoreTablePage extends Component {
     }
 
     onDownload = async () => {
+        try {
+            this.setState({
+                loadingDownload: true
+            })
+            await api.get("/course-registration-result/export-score-table", { params: { year: 2021, semester: 1 }, responseType: 'blob' })
+                .then(res => {
+                    const link = document.createElement('a')
+                    link.href = window.URL.createObjectURL(res.data)
+                    link.download = 'bang-diem.xlsx'
+                    link.click()
+                    document.body.removeChild(link);
+                })
+                .catch(e => e)
+            this.setState({
+                loadingDownload: false
+            })
+        } catch {
+            this.setState({
+                loadingDownload: false
+            })
+        }
 
-        // await api.get("/subject-schedules/export-schedule", { params: { year: 2021, semester: 1 }, responseType: 'blob' })
-        //     .then(res => {
-        //         const link = document.createElement('a')
-        //         link.href = window.URL.createObjectURL(res.data)
-        //         link.download = 'lich-thi.xlsx'
-        //         link.click()
-
-        //         document.body.removeChild(link);
-        //     })
-        //     .catch(e => e)
 
     }
 
@@ -226,7 +109,7 @@ class ScoreTablePage extends Component {
                                 </Table>
                                 {this.state.markData && this.state.markData?.semesterTranscripts?.length > 0 &&
                                     <>
-                                        <div style={{paddingRight:12}}>
+                                        <div style={{ paddingRight: 12 }}>
                                             <Row style={{ display: 'flex', justifyContent: 'flex-end', }}>
                                                 <p class="text-start">Tín chỉ tích lũy: <b>{this.state.markData.totalCredit}</b></p>
                                             </Row>
@@ -237,9 +120,9 @@ class ScoreTablePage extends Component {
                                                 <p class="text-start">Điểm trung bình hệ 4: <b>{this.state.markData.avgScoreFour}</b></p>
                                             </Row>
                                         </div>
-                                        {/* <Row style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                                            <Button size='sm' style={{ marginTop: 5 }} onClick={this.onDownload}>  <i className="feather icon-download" />Tải xuống bảng điểm</Button>
-                                        </Row> */}
+                                        <Row style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                                            <Button size='sm' style={{ marginTop: 5 }} onClick={this.onDownload}>  {this.state.loadingDownload ? <i className="feather icon-loader" /> : <i className="feather icon-download" />}Tải xuống bảng điểm</Button>
+                                        </Row>
                                     </>}
                             </Card.Body>
                         </Card>

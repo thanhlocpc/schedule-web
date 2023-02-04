@@ -11,7 +11,7 @@ import {
     getUserService,
 } from './services';
 
-import { NotificationManager} from 'react-notifications';
+import { NotificationManager } from 'react-notifications';
 
 
 // import history from '~/utils/history';
@@ -20,7 +20,7 @@ import { NotificationManager} from 'react-notifications';
 function* loginSaga(action) {
     const { email, password } = action.payload;
     console.log('login: ', email, '|', password);
-    yield put({ type: LOGIN_FAIL});
+    yield put({ type: LOGIN_FAIL });
     try {
         yield put({ type: LOADING });
         const response = yield call(loginService, email, password);
@@ -40,10 +40,11 @@ function* loginSaga(action) {
             // RootNavigate.getNavigate()('/');
         } else {
             NotificationManager.error(response.message);
-            yield put({ type: LOGIN_FAIL, payload: { error: response.message } });
+            yield put({ type: LOGIN_FAIL, payload: { error: response.message ? response.message : "Vui lòng thử lại" } });
         }
     } catch (error) {
-        yield put({ type: LOGIN_FAIL, error });
+        NotificationManager.error("Server is starting");
+        yield put({ type: LOGIN_FAIL, payload: { error: "Server not working" } });
     }
 }
 
