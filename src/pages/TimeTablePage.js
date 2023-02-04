@@ -3,6 +3,7 @@ import { Row, Col, Card, Table, Button, Dropdown, DropdownButton } from 'react-b
 import Aux from "../hoc/_Aux";
 import Breadcrumb from '../App/layout/AdminLayout/Breadcrumb';
 import api from "../interceptors/axios"
+import { dateToString } from '../utils/DateUtils';
 
 class TimeTablePage extends Component {
     state = {
@@ -48,7 +49,7 @@ class TimeTablePage extends Component {
                     timeStart: time.timeStart,
                     lessonTime: e.course?.subject.lessonTime,
                     classroom: time.classroom.name,
-                    time: 'Chưa thêm'
+                    time: `${dateToString(new Date(time.dateStart))} - ${dateToString(new Date(time.dateEnd))}`
                 })
             })
         })
@@ -130,7 +131,7 @@ class TimeTablePage extends Component {
                                 </Row>
                             </Card.Header>
                             <Card.Body>
-                                <Table responsive hover>
+                                <Table responsive  hover size="sm">
                                     <thead>
                                         <tr>
                                             <th>#</th>
@@ -170,7 +171,7 @@ class TimeTablePage extends Component {
                                             // } else {
                                             return (
                                                 <tr key={index}>
-                                                    <th scope="row">{index++}</th>
+                                                    <th scope="row">{index+1}</th>
                                                     <td>{e.subjectId}</td>
                                                     <td>{e.subjectName}</td>
                                                     <td>{e.credit}</td>

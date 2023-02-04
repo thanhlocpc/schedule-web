@@ -179,7 +179,7 @@ class ScoreTablePage extends Component {
                                 </Row>
                             </Card.Header>
                             <Card.Body>
-                                <Table responsive hover>
+                                <Table responsive hover size='sm'>
                                     <thead>
                                         <tr>
                                             <th>#</th>
