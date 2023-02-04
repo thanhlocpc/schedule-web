@@ -237,9 +237,9 @@ class ScoreTablePage extends Component {
                                                 <p class="text-start">Điểm trung bình hệ 4: <b>{this.state.markData.avgScoreFour}</b></p>
                                             </Row>
                                         </div>
-                                        <Row style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                                        {/* <Row style={{ display: 'flex', justifyContent: 'flex-end' }}>
                                             <Button size='sm' style={{ marginTop: 5 }} onClick={this.onDownload}>  <i className="feather icon-download" />Tải xuống bảng điểm</Button>
-                                        </Row>
+                                        </Row> */}
                                     </>}
                             </Card.Body>
                         </Card>
