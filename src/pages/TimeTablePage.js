@@ -13,20 +13,13 @@ class TimeTablePage extends Component {
             semester: 1
         },
         semester: [
-            // {
-            //     year: 2021,
-            //     semester: 2
-            // },
             {
                 year: 2021,
                 semester: 1
             },
-            // {
-            //     year: 2020,
-            //     semester: 2
-            // }
         ],
-        sortField: null
+        sortField: null,
+        loadingDownload: false
     }
 
     componentDidMount() {
@@ -60,16 +53,28 @@ class TimeTablePage extends Component {
 
     onDownload = async () => {
 
-        await api.get("/course-registration-result/export-timetable", { params: { year: 2021, semester: 1 }, responseType: 'blob' })
-            .then(res => {
-                const link = document.createElement('a')
-                link.href = window.URL.createObjectURL(res.data)
-                link.download = 'thoi-khoa-bieu.xlsx'
-                link.click()
-
-                document.body.removeChild(link);
+        try {
+            this.setState({
+                loadingDownload: true
             })
-            .catch(e => e)
+            await api.get("/course-registration-result/export-timetable", { params: { year: 2021, semester: 1 }, responseType: 'blob' })
+                .then(res => {
+                    const link = document.createElement('a')
+                    link.href = window.URL.createObjectURL(res.data)
+                    link.download = 'thoi-khoa-bieu.xlsx'
+                    link.click()
+
+                    document.body.removeChild(link);
+                })
+                .catch(e => e)
+            this.setState({
+                loadingDownload: false
+            })
+        } catch {
+            this.setState({
+                loadingDownload: false
+            })
+        }
 
     }
 
@@ -131,7 +136,7 @@ class TimeTablePage extends Component {
                                 </Row>
                             </Card.Header>
                             <Card.Body>
-                                <Table responsive  hover size="sm">
+                                <Table responsive hover size="sm">
                                     <thead>
                                         <tr>
                                             <th>#</th>
@@ -171,7 +176,7 @@ class TimeTablePage extends Component {
                                             // } else {
                                             return (
                                                 <tr key={index}>
-                                                    <th scope="row">{index+1}</th>
+                                                    <th scope="row">{index + 1}</th>
                                                     <td>{e.subjectId}</td>
                                                     <td>{e.subjectName}</td>
                                                     <td>{e.credit}</td>
@@ -188,7 +193,7 @@ class TimeTablePage extends Component {
                                 </Table>
                                 {this.state.timeTableData && this.state.timeTableData.length > 0 &&
                                     <Row style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                                        <Button size='sm' style={{ marginTop: 5 }} onClick={this.onDownload}>  <i className="feather icon-download" />Tải xuống thời khóa biểu</Button>
+                                        <Button size='sm' style={{ marginTop: 5 }} onClick={this.onDownload}> {this.state.loadingDownload ? <i className="feather icon-loader" /> : <i className="feather icon-download" />}Tải xuống thời khóa biểu</Button>
                                     </Row>}
                             </Card.Body>
                         </Card>
