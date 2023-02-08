@@ -83,6 +83,7 @@ class SchedulePage extends Component {
                                             <th>#</th>
                                             <th>Mã MH</th>
                                             <th>Tên MH</th>
+                                            <th>Nhóm HP</th>
                                             <th>Ngày thi</th>
                                             <th>Phòng thi</th>
                                             <th>Tiết bắt đầu</th>
@@ -97,6 +98,7 @@ class SchedulePage extends Component {
                                                     <th scope="row">{index++}</th>
                                                     <td>{e.subjectId}</td>
                                                     <td>{e.subjectName}</td>
+                                                    <td>{e.courseName}</td>
                                                     <td>{`${e.dateExam[2]}-${e.dateExam[1]}-${e.dateExam[0]}`}</td>
                                                     <td>{e.classroomName}</td>
                                                     <td>{e.lessonStart}</td>
