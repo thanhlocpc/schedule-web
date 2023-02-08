@@ -3,6 +3,7 @@ import { Row, Col, Card, Table, Button } from 'react-bootstrap';
 import Aux from "../hoc/_Aux";
 import Breadcrumb from '../App/layout/AdminLayout/Breadcrumb';
 import api from "../interceptors/axios"
+import { connect } from 'react-redux';
 
 class ScoreTablePage extends Component {
     state = {
@@ -10,7 +11,25 @@ class ScoreTablePage extends Component {
         loadingDownload: false
     }
     componentDidMount() {
-        this.fetchData()
+        if (this.props.auth.user?.roles) {
+            const roles = this.props.auth.user.roles.map((e, index) => e.id)
+            if(!roles.includes("STUDENT")){
+                window.location.href = "/"
+            }else{
+                this.fetchData()
+            }
+        }
+       
+    }
+    componentDidUpdate() {
+        if (this.props.auth.user?.roles) {
+            const roles = this.props.auth.user.roles.map((e, index) => e.id)
+            if(!roles.includes("STUDENT")){
+                window.location.href = "/"
+            }else{
+                this.fetchData()
+            }
+        }
     }
 
     fetchData = async () => {
@@ -133,4 +152,10 @@ class ScoreTablePage extends Component {
     }
 }
 
-export default ScoreTablePage;
+const mapStateToProps = (state) => {
+    return {
+        auth: state.authReducer
+    }
+}
+
+export default connect(mapStateToProps)(ScoreTablePage);
