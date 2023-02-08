@@ -13,6 +13,7 @@ export default {
                     type: 'item',
                     url: '/',
                     icon: 'feather icon-home',
+                    role:"ALL"
                 },
 
                 {
@@ -21,7 +22,8 @@ export default {
                     type: 'item',
                     url: '/schedule',
                     classes: 'nav-item',
-                    icon: 'feather icon-check-square'
+                    icon: 'feather icon-check-square',
+                    role:"ALL"
                 },
 
                 {
@@ -30,7 +32,8 @@ export default {
                     type: 'item',
                     url: '/time-table',
                     classes: 'nav-item',
-                    icon: 'feather icon-calendar'
+                    icon: 'feather icon-calendar',
+                    role:"ALL"
                 },
 
                 {
@@ -39,7 +42,8 @@ export default {
                     type: 'item',
                     url: '/score-table',
                     classes: 'nav-item',
-                    icon: 'feather icon-feather'
+                    icon: 'feather icon-feather',
+                    role:"STUDENT"
                 },
 
                 {
@@ -48,7 +52,8 @@ export default {
                     type: 'item',
                     url: '/logout',
                     classes: 'nav-item',
-                    icon: 'feather icon-log-out'
+                    icon: 'feather icon-log-out',
+                    role:"ALL"
                 },
 
             ]
