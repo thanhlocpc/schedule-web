@@ -13,6 +13,14 @@ class AuthVerify extends Component {
             }
         });
     }
+    componentDidMount() {
+        const tokenExpDate = localStorage.getItem("tokenExpDate");
+        if (tokenExpDate) {
+            if (parseInt(tokenExpDate) < Date.now()) {
+                this.props.logout();
+            }
+        }
+    }
     render() {
         return <div></div>;
     }
