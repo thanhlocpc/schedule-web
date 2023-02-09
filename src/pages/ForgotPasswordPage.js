@@ -7,11 +7,13 @@ import Breadcrumb from "../App/layout/AdminLayout/Breadcrumb";
 import { login } from '../redux/auth/actions';
 import { connect } from 'react-redux';
 import PacmanLoader from "react-spinners/PacmanLoader";
+import api from '../interceptors/axios'
+import { NotificationManager } from 'react-notifications';
 
-class SignUp1 extends React.Component {
+class ForgotPassword extends React.Component {
     state = {
         username: '',
-        password: ''
+        loading: false
     }
 
     componentDidMount() {
@@ -24,13 +26,42 @@ class SignUp1 extends React.Component {
             window.location.href = "/"
         }
     }
-    componentWillUnmount(){
-        
+    componentWillUnmount() {
+
     }
     render() {
 
-        const login = () => {
-            this.props.login(this.state.username, this.state.password)
+        const submitEmail = async () => {
+            // this.props.login(this.state.username, this.state.password)
+
+
+            this.setState({ loading: true })
+            try {
+                await api
+                    .get(`/auths/forgot-password?email=${this.state.username}`)
+                    .then((res) => {
+                        console.log(res);
+                        return res?.data;
+                    })
+                    .then((res) => {
+                        console.log(res);
+                        if (res?.status === 1) {
+                            window.location.href = `/update-password?email=${this.state.username}`;
+                        } else {
+                            NotificationManager.error(res?.message);
+                        }
+                    })
+                    .catch((e) => {
+                        // NotificationManager.error(e);
+
+                    });
+
+            } catch (error) {
+
+            }
+
+            this.setState({ loading: false })
+
         }
 
         const override = {
@@ -56,35 +87,26 @@ class SignUp1 extends React.Component {
                                 <div className="mb-4">
                                     <i className="feather icon-unlock auth-icon" />
                                 </div>
-                                <h3 className="mb-4">Đăng nhập</h3>
+                                <h3 className="mb-4">Quên mật khẩu</h3>
+                                <p className="">Nhập email tài khoản</p>
                                 <div className="input-group mb-3">
                                     <input type="email" className="form-control" placeholder="Email"
                                         onInput={(e) => { this.setState({ username: e.target.value }) }} />
                                 </div>
-                                <div className="input-group mb-4">
-                                    <input type="password" className="form-control" placeholder="password"
-                                        onInput={(e) => { this.setState({ password: e.target.value }) }} />
-                                </div>
-                                <div className="form-group text-left">
-                                    <div className="checkbox checkbox-fill d-inline">
-                                        <input type="checkbox" name="checkbox-fill-1" id="checkbox-fill-a1" />
-                                        <label htmlFor="checkbox-fill-a1" className="cr"> Save credentials</label>
-                                    </div>
-                                </div>
-                                <button className="btn btn-primary shadow-2 mb-4" onClick={login}>
-                                    {this.props.auth.loading ?
+                                <button className="btn btn-primary shadow-2 mb-4" onClick={submitEmail}>
+                                    {this.state.loading ?
                                         <PacmanLoader
                                             cssOverride={override}
                                             size={11}
                                             color='white'
-                                            loading={this.props.auth.loading}
+                                            loading={this.state.loading}
                                             speedMultiplier={1.5}
                                             aria-label="Loading Spinner"
                                             data-testid="loader"
-                                        /> : "Đăng nhập"}
+                                        /> : "Xác nhận"}
                                 </button>
 
-                                <p className="mb-2 text-muted">Quên mật khẩu? <NavLink to="/forgot-password">Cấp lại</NavLink></p>
+                                <p className="mb-2 text-muted">Có tài khoản? <NavLink to="/signin">Đăng nhập</NavLink></p>
                                 {/* <p className="mb-0 text-muted">Don’t have an account? <NavLink to="/auth/signup-1">Signup</NavLink></p> */}
                             </div>
                         </div>
@@ -110,4 +132,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SignUp1);
+export default connect(mapStateToProps, mapDispatchToProps)(ForgotPassword);
