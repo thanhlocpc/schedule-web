@@ -29,7 +29,7 @@ class NavLeft extends Component {
                 <ul className="navbar-nav mr-auto">
                     <li><a href={DEMO.BLANK_LINK} className="full-screen" onClick={this.props.onFullScreen}><i className={iconFullScreen.join(' ')} /></a></li>
                     <li className={navItemClass.join(' ')}>
-                        <Dropdown alignRight={dropdownRightAlign}>
+                        <Dropdown alignRight={dropdownRightAlign} color='black'>
                             <Dropdown.Toggle variant={'link'} id="dropdown-basic">
                                 Chức năng
                             </Dropdown.Toggle>

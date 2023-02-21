@@ -136,9 +136,9 @@ class TimeTablePage extends Component {
                                 </Row>
                             </Card.Header>
                             <Card.Body>
-                                <Table responsive hover size="sm">
+                                <Table responsive hover size="sm" >
                                     <thead>
-                                        <tr>
+                                        <tr style={{color:'black'}}>
                                             <th>#</th>
                                             <th>Mã MH</th>
                                             <th>Tên MH</th>
@@ -175,7 +175,7 @@ class TimeTablePage extends Component {
                                             //     )
                                             // } else {
                                             return (
-                                                <tr key={index}>
+                                                <tr key={index} style={{color:'black'}}>
                                                     <th scope="row">{index + 1}</th>
                                                     <td>{e.subjectId}</td>
                                                     <td>{e.subjectName}</td>

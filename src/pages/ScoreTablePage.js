@@ -27,13 +27,13 @@ class ScoreTablePage extends Component {
             if(!roles.includes("STUDENT")){
                 window.location.href = "/"
             }else{
-                this.fetchData()
+                // this.fetchData()
             }
         }
     }
 
     fetchData = async () => {
-        const data = await api.get("/course-registration-result/mark")
+        const data = await api.get("/score-table/")
             .then(res => res.data)
             .catch(e => e)
         console.log(data);
@@ -47,7 +47,7 @@ class ScoreTablePage extends Component {
             this.setState({
                 loadingDownload: true
             })
-            await api.get("/course-registration-result/export-score-table", { params: { year: 2021, semester: 1 }, responseType: 'blob' })
+            await api.get("/score-table/export-score-table", { params: { year: 2021, semester: 1 }, responseType: 'blob' })
                 .then(res => {
                     const link = document.createElement('a')
                     link.href = window.URL.createObjectURL(res.data)
@@ -83,7 +83,7 @@ class ScoreTablePage extends Component {
                             <Card.Body>
                                 <Table responsive hover size='sm'>
                                     <thead>
-                                        <tr>
+                                        <tr style={{color:"black"}}>
                                             <th>#</th>
                                             <th>Mã MH</th>
                                             <th>Tên MH</th>
@@ -106,7 +106,7 @@ class ScoreTablePage extends Component {
                                                     </tr>
                                                     {e.subjects.map((item, index2) => {
                                                         return (
-                                                            <tr key={index2}>
+                                                            <tr key={index2} style={{color:"black"}}>
                                                                 <th scope="row">{index++}</th>
                                                                 <td>{item.subject.id}</td>
                                                                 <td>{item.subject.name}</td>
@@ -130,13 +130,13 @@ class ScoreTablePage extends Component {
                                     <>
                                         <div style={{ paddingRight: 12 }}>
                                             <Row style={{ display: 'flex', justifyContent: 'flex-end', }}>
-                                                <p class="text-start">Tín chỉ tích lũy: <b>{this.state.markData.totalCredit}</b></p>
+                                                <p style={{color:"black"}}>Tín chỉ tích lũy: <b>{this.state.markData.totalCredit}</b></p>
                                             </Row>
                                             <Row style={{ display: 'flex', justifyContent: 'flex-end', }}>
-                                                <p class="text-start">Điểm trung bình hệ 10: <b>{this.state.markData.avgScoreTen}</b></p>
+                                                <p style={{color:"black"}}>Điểm trung bình hệ 10: <b>{this.state.markData.avgScoreTen}</b></p>
                                             </Row>
                                             <Row style={{ display: 'flex', justifyContent: 'flex-end', }}>
-                                                <p class="text-start">Điểm trung bình hệ 4: <b>{this.state.markData.avgScoreFour}</b></p>
+                                                <p style={{color:"black"}}>Điểm trung bình hệ 4: <b>{this.state.markData.avgScoreFour}</b></p>
                                             </Row>
                                         </div>
                                         <Row style={{ display: 'flex', justifyContent: 'flex-end' }}>

@@ -7,11 +7,13 @@ import Breadcrumb from "../App/layout/AdminLayout/Breadcrumb";
 import { login } from '../redux/auth/actions';
 import { connect } from 'react-redux';
 import PacmanLoader from "react-spinners/PacmanLoader";
+import { NotificationManager } from 'react-notifications';
 
 class SignUp1 extends React.Component {
     state = {
         username: '',
-        password: ''
+        password: '',
+        messageEmail: ''
     }
 
     componentDidMount() {
@@ -24,13 +26,17 @@ class SignUp1 extends React.Component {
             window.location.href = "/"
         }
     }
-    componentWillUnmount(){
-        
+    componentWillUnmount() {
+
     }
     render() {
 
         const login = () => {
-            this.props.login(this.state.username, this.state.password)
+            if(!this.state.messageEmail && this.state.username && this.state.password){
+                this.props.login(this.state.username, this.state.password)
+            }else{
+                NotificationManager.error("Vui lòng nhập đầy đủ thông tin");
+            }
         }
 
         const override = {
@@ -39,6 +45,15 @@ class SignUp1 extends React.Component {
             borderColor: "white",
             left: -12
         };
+
+        const onChangeEmail = (e) => {
+            this.setState({ username: e.target.value })
+            if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(e.target.value)) {
+                this.setState({ messageEmail: "" })
+            } else {
+                this.setState({ messageEmail: "Email không hợp lệ." })
+            }
+        }
 
         return (
             <Aux>
@@ -58,19 +73,17 @@ class SignUp1 extends React.Component {
                                 </div>
                                 <h3 className="mb-4">Đăng nhập</h3>
                                 <div className="input-group mb-3">
-                                    <input type="email" className="form-control" placeholder="Email"
-                                        onInput={(e) => { this.setState({ username: e.target.value }) }} />
+                                    <input type="email" className="form-control w-100" placeholder="Email"
+                                        onInput={(e) => { onChangeEmail(e) }} />
+                                    <p className="text-danger mb-0">
+                                        {this.state.messageEmail}
+                                    </p>
                                 </div>
                                 <div className="input-group mb-4">
                                     <input type="password" className="form-control" placeholder="password"
                                         onInput={(e) => { this.setState({ password: e.target.value }) }} />
                                 </div>
-                                <div className="form-group text-left">
-                                    <div className="checkbox checkbox-fill d-inline">
-                                        <input type="checkbox" name="checkbox-fill-1" id="checkbox-fill-a1" />
-                                        <label htmlFor="checkbox-fill-a1" className="cr"> Save credentials</label>
-                                    </div>
-                                </div>
+
                                 <button className="btn btn-primary shadow-2 mb-4" onClick={login}>
                                     {this.props.auth.loading ?
                                         <PacmanLoader
@@ -85,7 +98,7 @@ class SignUp1 extends React.Component {
                                 </button>
 
                                 <p className="mb-2 text-muted">Quên mật khẩu? <NavLink to="/forgot-password">Cấp lại</NavLink></p>
-                                {/* <p className="mb-0 text-muted">Don’t have an account? <NavLink to="/auth/signup-1">Signup</NavLink></p> */}
+
                             </div>
                         </div>
                     </div>
