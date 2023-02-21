@@ -21,7 +21,7 @@
     "react-redux": "^8.0.5",
     "react-reveal": "^1.2.2",
     "react-router-dom": "^4.3.1",
-    "react-scripts": "^4.0.3",
+    "react-scripts": "^5.0.1",
     "react-spinners": "^0.13.7",
     "react-window-size": "^1.2.2",
     "redux": "^4.0.1",
@@ -30,7 +30,7 @@
     "sass": "^1.56.2"
   },
   "scripts": {
-    "start": "react-scripts --openssl-legacy-provider start",
+    "start": "react-scripts start",
     "build": "CI=false && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
