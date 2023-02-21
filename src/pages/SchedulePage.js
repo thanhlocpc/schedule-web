@@ -79,7 +79,7 @@ class SchedulePage extends Component {
                             <Card.Body>
                                 <Table responsive hover size='sm'>
                                     <thead>
-                                        <tr>
+                                        <tr style={{color:"black"}}>
                                             <th>#</th>
                                             <th>Mã MH</th>
                                             <th>Tên MH</th>
@@ -94,7 +94,7 @@ class SchedulePage extends Component {
                                     <tbody>
                                         {this.state.scheduleData?.map((e, index) => {
                                             return (
-                                                <tr key={index}>
+                                                <tr key={index} style={{color:"black"}}>
                                                     <th scope="row">{index++}</th>
                                                     <td>{e.subjectId}</td>
                                                     <td>{e.subjectName}</td>
