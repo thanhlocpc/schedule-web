@@ -34,7 +34,7 @@ class SchedulePage extends Component {
             this.setState({
                 loadingDownload: true
             })
-            await api.get("/subject-schedules/export-schedule", { params: { year: 2021, semester: 1 }, responseType: 'blob' })
+            await api.get("/subject-schedules/export-schedule/student", { params: { year: 2021, semester: 1 }, responseType: 'blob' })
                 .then(res => {
                     const link = document.createElement('a')
                     link.href = window.URL.createObjectURL(res.data)

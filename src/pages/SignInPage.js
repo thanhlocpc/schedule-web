@@ -96,14 +96,10 @@ class SignUp1 extends React.Component {
                                             data-testid="loader"
                                         /> : "Đăng nhập"}
                                 </button>
-
                                 <p className="mb-2 text-muted">Quên mật khẩu? <NavLink to="/forgot-password">Cấp lại</NavLink></p>
-
                             </div>
                         </div>
                     </div>
-
-
 
                 </div>
             </Aux>
